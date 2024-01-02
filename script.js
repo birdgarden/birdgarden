@@ -27,7 +27,8 @@ function signup() {
       // Adicione lógica adicional, como salvar informações adicionais no Firebase Firestore
       // por exemplo: firebase.firestore().collection('users').doc(user.uid).set({ name, age });
 
-      // Adicione redirecionamento ou lógica adicional após o registro, se necessário
+      // Redirecionamento para a página inicial do jogo (substitua a URL conforme necessário)
+      window.location.href = "index.html";
     })
     .catch(error => {
       const errorCode = error.code;
@@ -45,7 +46,9 @@ function login() {
     .then(userCredential => {
       const user = userCredential.user;
       console.log('Login successful:', user.uid);
-      // Adicione redirecionamento para a próxima página após o login, se necessário
+      
+      // Redirecionamento para a página inicial do jogo (substitua a URL conforme necessário)
+      window.location.href = "index.html";
     })
     .catch(error => {
       const errorCode = error.code;
