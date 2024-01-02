@@ -1,28 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BirdGarden - Login</title>
-  <!-- Adicione os links para o Firebase SDK aqui -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BirdGarden</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="app">
+        <div v-if="user">
+            <h1>BirdGarden</h1>
+            <p>Bem-vindo, {{ user.displayName }}!</p>
+            <button @click="logout">Sair</button>
+            <!-- Interface do jogo -->
+            <div>
+                <h2>Loja de Sementes</h2>
+                <button @click="buySeed">Comprar Semente</button>
+                <!-- Adicione mais elementos da loja aqui -->
+            </div>
+            <div>
+                <h2>Loja de MÃ³veis</h2>
+                <button @click="buyFurniture">Comprar MÃ³vel</button>
+                <!-- Adicione mais elementos da loja de mÃ³veis aqui -->
+            </div>
+        </div>
+        <div v-else>
+            <h1>BirdGarden</h1>
+            <button @click="login">Entrar com o Google</button>
+        </div>
+    </div>
 
-  <!-- Seção de login -->
-  <div>
-    <h2>Login</h2>
-    <label for="loginEmail">Email:</label>
-    <input type="email" id="loginEmail" required>
-    <label for="loginPassword">Senha:</label>
-    <input type="password" id="loginPassword" required>
-    <button id="loginButton">Entrar</button>
-    <button id="forgotPasswordButton">Esqueci a Senha</button>
-  </div>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-analytics.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
 
-  <!-- Adicione o script.js no final da sua página HTML -->
-  <script src="script.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
