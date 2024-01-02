@@ -9,80 +9,39 @@ const firebaseConfig = {
   measurementId: "G-2KV6FDDX7H"
 };
 
+
+      
+
+// Inicialização do Firebase
 firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
 
-// Event Listeners para a página de Login
-if (document.getElementById('loginButton')) {
-  document.getElementById('loginButton').addEventListener('click', login);
-}
-
-if (document.getElementById('forgotPasswordButton')) {
-  document.getElementById('forgotPasswordButton').addEventListener('click', forgotPassword);
-}
-
-// Event Listeners para a página de Registro
-if (document.getElementById('signupButton')) {
-  document.getElementById('signupButton').addEventListener('click', signup);
-}
-
-// Função de Login
-function login() {
-  const email = document.getElementById('loginEmail').value;
-  const password = document.getElementById('loginPassword').value;
-
-  auth.signInWithEmailAndPassword(email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
-      console.log('Login successful:', user.uid);
-      // Redirecionamento ou outras ações após o login bem-sucedido
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Login error:', errorCode, errorMessage);
-      // Tratamento de erros
-      alert(`Erro ao fazer login: ${errorMessage}`);
-    });
-}
-
-// Função de Redefinição de Senha
-function forgotPassword() {
-  const email = document.getElementById('loginEmail').value;
-
-  auth.sendPasswordResetEmail(email)
-    .then(() => {
-      console.log('Password reset email sent successfully');
-      // Adicione feedback ao usuário ou redirecionamento, se necessário
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Password reset error:', errorCode, errorMessage);
-      // Tratamento de erros
-      alert(`Erro ao enviar email de redefinição de senha: ${errorMessage}`);
-    });
-}
-
-// Função de Registro
-function signup() {
-  const email = document.getElementById('signupEmail').value;
-  const password = document.getElementById('signupPassword').value;
-
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
-      console.log('Signup successful:', user.uid);
-      // Redirecionamento ou outras ações após o registro bem-sucedido
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Signup error:', errorCode, errorMessage);
-      // Tratamento de erros
-      alert(`Erro ao criar conta: ${errorMessage}`);
-    });
-}
-
-// Restante do seu código JavaScript
-// ...
+// Vue.js - Framework para a interface do usuário
+const app = new Vue({
+    el: '#app',
+    data: {
+        user: null,
+        // Adicione mais dados do jogo aqui
+    },
+    created() {
+        // Inicialize o Firebase Auth e Firestore aqui
+        firebase.auth().onAuthStateChanged(user => {
+            this.user = user;
+        });
+    },
+    methods: {
+        login() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            firebase.auth().signInWithPopup(provider);
+        },
+        logout() {
+            firebase.auth().signOut();
+        },
+        buySeed() {
+            // Lógica para comprar sementes
+        },
+        buyFurniture() {
+            // Lógica para comprar móveis
+        }
+        // Adicione mais métodos relacionados ao jogo aqui
+    }
+});
