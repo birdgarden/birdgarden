@@ -4,48 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BirdGarden - Registro</title>
-  <!-- Adicione aqui os links para o Firebase e Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Adicione os links para o Firebase SDK aqui -->
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-database.js"></script>
 </head>
-<body class="bg-light">
-  <div class="container mt-5">
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <div class="card">
-          <div class="card-body">
-            <h2 class="text-center mb-4">BirdGarden - Registro</h2>
-            <form>
-              <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="email" class="form-control" id="email" placeholder="E-mail">
-              </div>
-              <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" class="form-control" id="password" placeholder="Senha">
-              </div>
-              <div class="form-group">
-                <label for="name">Nome:</label>
-                <input type="text" class="form-control" id="name" placeholder="Nome">
-              </div>
-              <div class="form-group">
-                <label for="age">Idade:</label>
-                <input type="number" class="form-control" id="age" placeholder="Idade">
-              </div>
-              <button type="button" class="btn btn-primary btn-block" onclick="signup()">Registrar</button>
-            </form>
-            <div class="text-center mt-3">
-              <p>Já tem uma conta? <a href="login.html">Faça login</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<body>
+
+  <!-- Seção de registro -->
+  <div>
+    <h2>Registro</h2>
+    <label for="signupEmail">Email:</label>
+    <input type="email" id="signupEmail" required>
+    <label for="signupPassword">Senha:</label>
+    <input type="password" id="signupPassword" required>
+    <button id="signupButton">Registrar</button>
   </div>
 
+  <!-- Adicione o script.js no final da sua página HTML -->
   <script src="script.js"></script>
 </body>
 </html>
