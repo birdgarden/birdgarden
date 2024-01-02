@@ -1,8 +1,4 @@
-// Configuração do Firebase
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-// Inicialização do Firebase
+// Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyAHGnB7tmGC2II-q8l34d2I1peZA8ViaTk",
     authDomain: "birdgarden-81ce7.firebaseapp.com",
@@ -13,40 +9,42 @@ const firebaseConfig = {
     measurementId: "G-2KV6FDDX7H"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
+firebase.initializeApp(firebaseConfig);
 
-// Vue.js - Framework para a interface do usuário
-import Vue from "https://cdn.jsdelivr.net/npm/vue@2";
+// Firebase authentication
+const auth = firebase.auth();
 
-const app = new Vue({
-    el: '#app',
-    data: {
-        user: null,
-        // Adicione mais dados do jogo aqui
-    },
-    created() {
-        // Inicialize o Firebase Auth aqui
-        onAuthStateChanged(auth, (user) => {
-            this.user = user;
-        });
-    },
-    methods: {
-        loginWithGoogle() {
-            const provider = new GoogleAuthProvider();
-            signInWithPopup(auth, provider).catch(error => {
-                console.error(error.message);
-            });
-        },
-        logout() {
-            signOut(auth);
-        },
-        buySeed() {
-            // Lógica para comprar sementes
-        },
-        buyFurniture() {
-            // Lógica para comprar móveis
-        }
-        // Adicione mais métodos relacionados ao jogo aqui
-    }
+// Check if user is logged in
+auth.onAuthStateChanged(user => {
+  if (user) {
+    // User is signed in
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('game-container').style.display = 'block';
+    // Call your game initialization function here
+    initializeGame();
+  } else {
+    // No user is signed in
+    document.getElementById('login-container').style.display = 'block';
+    document.getElementById('game-container').style.display = 'none';
+  }
 });
+
+// Function to handle login
+function login() {
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+
+  auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      // Successful login
+    })
+    .catch(error => {
+      console.error(error.message);
+      // Handle login error
+    });
+}
+
+// Your game logic goes here
+function initializeGame() {
+  // Implement the game features as per your requirements
+}
