@@ -12,10 +12,19 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Event Listeners
-document.getElementById('loginButton').addEventListener('click', login);
-document.getElementById('forgotPasswordButton').addEventListener('click', forgotPassword);
-document.getElementById('signupButton').addEventListener('click', signup);
+// Event Listeners para a página de Login
+if (document.getElementById('loginButton')) {
+  document.getElementById('loginButton').addEventListener('click', login);
+}
+
+if (document.getElementById('forgotPasswordButton')) {
+  document.getElementById('forgotPasswordButton').addEventListener('click', forgotPassword);
+}
+
+// Event Listeners para a página de Registro
+if (document.getElementById('signupButton')) {
+  document.getElementById('signupButton').addEventListener('click', signup);
+}
 
 // Função de Login
 function login() {
