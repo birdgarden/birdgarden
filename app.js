@@ -121,3 +121,77 @@ function checkPlantGrowth(plant) {
     alert('A bird visited your plant!');
   }
 }
+
+// Função para atualizar as estatísticas na interface
+function updateStats() {
+  const seedsInventoryElement = document.getElementById('seeds-inventory');
+  const plantsPlantedElement = document.getElementById('plants-planted');
+  const birdsObservedElement = document.getElementById('birds-observed');
+
+  seedsInventoryElement.textContent = seedsInventory;
+  plantsPlantedElement.textContent = plants.length;
+  birdsObservedElement.textContent = birds.length;
+}
+
+// ... Código anterior ...
+
+// Função para exibir a loja de sementes
+function showSeedStore() {
+  // Lógica para exibir a loja de sementes na interface
+  const gameContainer = document.getElementById('game-container');
+  gameContainer.innerHTML = `
+    <h2>BirdGarden - Seed Store</h2>
+    <p>Seeds in Inventory: ${seedsInventory}</p>
+    <button onclick="buySeed()">Buy Seed</button>
+    <button onclick="showGarden()">Go to Garden</button>
+    <button onclick="showFurnitureStore()">Go to Furniture Store</button>
+    <div id="game-content">
+      <h2>Your BirdGarden Stats</h2>
+      <div id="stats">
+        <p>Seeds in Inventory: <span id="seeds-inventory">${seedsInventory}</span></p>
+        <p>Plants Planted: <span id="plants-planted">${plants.length}</span></p>
+        <p>Birds Observed: <span id="birds-observed">${birds.length}</span></p>
+      </div>
+    </div>
+  `;
+}
+
+// Função para exibir o jardim
+function showGarden() {
+  // Lógica para exibir o jardim na interface
+  const gameContainer = document.getElementById('game-container');
+  gameContainer.innerHTML = `
+    <h2>BirdGarden - Your Garden</h2>
+    <p>Seeds Planted: ${plants.length}</p>
+    <button onclick="plantSeed()">Plant Seed</button>
+    <button onclick="showSeedStore()">Back to Seed Store</button>
+    <button onclick="showFurnitureStore()">Go to Furniture Store</button>
+    <div id="game-content">
+      <h2>Your BirdGarden Stats</h2>
+      <div id="stats">
+        <p>Seeds in Inventory: <span id="seeds-inventory">${seedsInventory}</span></p>
+        <p>Plants Planted: <span id="plants-planted">${plants.length}</span></p>
+        <p>Birds Observed: <span id="birds-observed">${birds.length}</span></p>
+      </div>
+    </div>
+  `;
+}
+
+// Função para exibir a loja de móveis
+function showFurnitureStore() {
+  // Lógica para exibir a loja de móveis na interface
+  const gameContainer = document.getElementById('game-container');
+  gameContainer.innerHTML = `
+    <h2>BirdGarden - Furniture Store</h2>
+    <!-- Add furniture items here -->
+    <button onclick="showSeedStore()">Back to Seed Store</button>
+    <div id="game-content">
+      <h2>Your BirdGarden Stats</h2>
+      <div id="stats">
+        <p>Seeds in Inventory: <span id="seeds-inventory">${seedsInventory}</span></p>
+        <p>Plants Planted: <span id="plants-planted">${plants.length}</span></p>
+        <p>Birds Observed: <span id="birds-observed">${birds.length}</span></p>
+      </div>
+    </div>
+  `;
+}
