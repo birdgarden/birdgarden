@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BirdGarden</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>BirdGarden</title>
 </head>
 <body>
-    <div id="app">
-        <div v-if="user">
-            <h1>BirdGarden</h1>
-            <p>Bem-vindo, {{ user.displayName }}!</p>
-            <button @click="logout">Sair</button>
-            <!-- Interface do jogo -->
-            <div>
-                <h2>Loja de Sementes</h2>
-                <button @click="buySeed">Comprar Semente</button>
-                <!-- Adicione mais elementos da loja aqui -->
-            </div>
-            <div>
-                <h2>Loja de Móveis</h2>
-                <button @click="buyFurniture">Comprar Móvel</button>
-                <!-- Adicione mais elementos da loja de móveis aqui -->
-            </div>
-        </div>
-        <div v-else>
-            <h1>BirdGarden</h1>
-            <button @click="loginWithGoogle">Entrar com o Google</button>
-        </div>
-    </div>
+  <div id="login-container" class="container">
+    <h1>Login</h1>
+    <form id="login-form">
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+      <button type="button" onclick="login()">Login</button>
+    </form>
+  </div>
 
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <div id="game-container" class="container" style="display: none;">
+    <!-- Game content goes here -->
+  <div id="game-content">
+  <h2>Your BirdGarden Stats</h2>
+   <div id="stats">
+    <p>Seeds in Inventory: <span id="seeds-inventory">0</span></p>
+    <p>Plants Planted: <span id="plants-planted">0</span></p>
+    <p>Birds Observed: <span id="birds-observed">0</span></p>
+   </div>
+</div>
 
-    <script type="module" src="app.js"></script>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.5.0/firebase-firestore.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
