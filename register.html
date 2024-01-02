@@ -1,27 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BirdGarden - Registro</title>
-  <!-- Adicione os links para o Firebase SDK aqui -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js"></script>
-</head>
-<body>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
 
-  <!-- Seção de registro -->
-  <div>
-    <h2>Registro</h2>
-    <label for="signupEmail">Email:</label>
-    <input type="email" id="signupEmail" required>
-    <label for="signupPassword">Senha:</label>
-    <input type="password" id="signupPassword" required>
-    <button id="signupButton">Registrar</button>
-  </div>
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-  <!-- Adicione o script.js no final da sua página HTML -->
-  <script src="script.js"></script>
-</body>
-</html>
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
