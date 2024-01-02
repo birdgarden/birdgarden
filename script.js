@@ -12,54 +12,34 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 
-// Página de Registro
-function signup() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
-  const name = document.getElementById('name').value;
-  const age = document.getElementById('age').value;
+// Event Listeners
+document.getElementById('loginButton').addEventListener('click', login);
+document.getElementById('forgotPasswordButton').addEventListener('click', forgotPassword);
+document.getElementById('signupButton').addEventListener('click', signup);
 
-  auth.createUserWithEmailAndPassword(email, password)
-    .then(userCredential => {
-      const user = userCredential.user;
-      console.log('Signup successful:', user.uid);
-
-      // Adicione lógica adicional, como salvar informações adicionais no Firebase Firestore
-      // por exemplo: firebase.firestore().collection('users').doc(user.uid).set({ name, age });
-
-      // Redirecionamento para a página inicial do jogo (substitua a URL conforme necessário)
-      window.location.href = "index.html";
-    })
-    .catch(error => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error('Signup error:', errorCode, errorMessage);
-    });
-}
-
-// Página de Login
+// Função de Login
 function login() {
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  const email = document.getElementById('loginEmail').value;
+  const password = document.getElementById('loginPassword').value;
 
   auth.signInWithEmailAndPassword(email, password)
     .then(userCredential => {
       const user = userCredential.user;
       console.log('Login successful:', user.uid);
-      
-      // Redirecionamento para a página inicial do jogo (substitua a URL conforme necessário)
-      window.location.href = "index.html";
+      // Redirecionamento ou outras ações após o login bem-sucedido
     })
     .catch(error => {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error('Login error:', errorCode, errorMessage);
+      // Tratamento de erros
+      alert(`Erro ao fazer login: ${errorMessage}`);
     });
 }
 
-// Página de Redefinição de Senha
+// Função de Redefinição de Senha
 function forgotPassword() {
-  const email = document.getElementById('email').value;
+  const email = document.getElementById('loginEmail').value;
 
   auth.sendPasswordResetEmail(email)
     .then(() => {
@@ -70,7 +50,30 @@ function forgotPassword() {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.error('Password reset error:', errorCode, errorMessage);
+      // Tratamento de erros
+      alert(`Erro ao enviar email de redefinição de senha: ${errorMessage}`);
     });
 }
 
-// ... (código futuro)
+// Função de Registro
+function signup() {
+  const email = document.getElementById('signupEmail').value;
+  const password = document.getElementById('signupPassword').value;
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then(userCredential => {
+      const user = userCredential.user;
+      console.log('Signup successful:', user.uid);
+      // Redirecionamento ou outras ações após o registro bem-sucedido
+    })
+    .catch(error => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error('Signup error:', errorCode, errorMessage);
+      // Tratamento de erros
+      alert(`Erro ao criar conta: ${errorMessage}`);
+    });
+}
+
+// Restante do seu código JavaScript
+// ...
